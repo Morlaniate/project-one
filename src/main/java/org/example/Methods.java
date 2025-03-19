@@ -1,6 +1,9 @@
 package org.example;
 
+
 import org.example.implementations.*;
+
+import java.util.List;
 
 public class Methods {
     private static String implementation = "right";
@@ -9,13 +12,23 @@ public class Methods {
         implementation = implementationName;
     }
 
-    public static Validator makeValidator() {
+    public static <T> boolean add(List<T> coll, T element) {
         return switch (implementation) {
-            case "wrong1" -> new Wrong1();
-            case "wrong2" -> new Wrong2();
-            case "wrong3" -> new Wrong3();
-            case "wrong4" -> new Wrong4();
-            default -> new Right();
+            case "wrong1" -> AddWrong1.add(coll, element);
+            case "wrong2" -> AddWrong2.add(coll, element);
+            case "wrong3" -> AddWrong3.add(coll, element);
+            case "wrong4" -> AddWrong4.add(coll, element);
+            default -> AddRight.add(coll, element);
+        };
+    }
+
+    public static <T> boolean add(List<T> coll, T element, int index) {
+        return switch (implementation) {
+            case "wrong1" -> AddWrong1.add(coll, element, index);
+            case "wrong2" -> AddWrong2.add(coll, element, index);
+            case "wrong3" -> AddWrong3.add(coll, element, index);
+            case "wrong4" -> AddWrong4.add(coll, element, index);
+            default -> AddRight.add(coll, element, index);
         };
     }
 }
