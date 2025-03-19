@@ -5,8 +5,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
+public final class Person {
 
-public class Product {
-    private String title;
-    private int price;
+    private String name;
+    private int age;
+
 }
