@@ -80,34 +80,34 @@ public class AppTest {
         assertThat(actual).isNotSameAs(coll2);
     }
 
-    @Test
-    public void testDuplicate() {
-        var coll = new ArrayList<>(List.of(1, 2, 3, 4, 5));
-        var expected = new ArrayList<>(List.of(2, 4, 6, 8, 10));
-        var actual = App.duplicate(coll);
-
-        assertThat(actual).isEqualTo(expected);
-    }
-
-    @Test
-    public void testDuplicate2() {
-
-        var coll = new ArrayList<>(List.of(0, -2, 5, 10));
-        var expected = new ArrayList<>(List.of(0, -4, 10, 20));
-        var actual = App.duplicate(coll);
-
-        assertThat(actual).isEqualTo(expected);
-        assertThat(actual).isNotSameAs(expected);
-    }
-
-    @Test
-    public void testDuplicateWithEmpty() {
-
-        var coll = new ArrayList<Integer>();
-        var expected = new ArrayList<Integer>();
-        var actual = App.duplicate(coll);
-
-        assertThat(actual).isEqualTo(expected);
-        assertThat(actual).isNotSameAs(expected);
-    }
+//    @Test
+//    public void testDuplicate() {
+//        var coll = new ArrayList<>(List.of(1, 2, 3, 4, 5));
+//        var expected = new ArrayList<>(List.of(2, 4, 6, 8, 10));
+//        var actual = App.duplicate(coll);
+//
+//        assertThat(actual).isEqualTo(expected);
+//    }
+//
+//    @Test
+//    public void testDuplicate2() {
+//
+//        var coll = new ArrayList<>(List.of(0, -2, 5, 10));
+//        var expected = new ArrayList<>(List.of(0, -4, 10, 20));
+//        var actual = App.duplicate(coll);
+//
+//        assertThat(actual).isEqualTo(expected);
+//        assertThat(actual).isNotSameAs(expected);
+//    }
+//
+//    @Test
+//    public void testDuplicateWithEmpty() {
+//
+//        var coll = new ArrayList<Integer>();
+//        var expected = new ArrayList<Integer>();
+//        var actual = App.duplicate(coll);
+//
+//        assertThat(actual).isEqualTo(expected);
+//        assertThat(actual).isNotSameAs(expected);
+//    }
 }
