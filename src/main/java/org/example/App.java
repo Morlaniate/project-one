@@ -1,14 +1,49 @@
 package org.example;
 
+import org.example.model.Film;
 import org.example.model.Person;
 import org.example.model.Product;
+import org.example.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collectors;
 
 public class App {
+
+    private static final List<String> FREE_DOMAINS = List.of(
+            "gmail.com",
+            "yandex.ru",
+            "hotmail.com",
+            "yahoo.com"
+    );
+
+    public static User findUserById(List<User> users, long id) {
+
+        return users.stream()
+                .filter(u -> id == (u.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public static Map<String, Long> getGenres(List<Film> films) {
+        return films.stream()
+                .flatMap(film -> film.getGenres().stream()
+                        .map(String::toLowerCase))
+                .collect(Collectors.groupingBy(
+                        genre -> genre,
+                        Collectors.counting()));
+    }
+
+    public static Map<String, Long> getFreeDomainsCount(List<String> urls) {
+        return urls.stream()
+                .map(url -> url.split("@")[1])
+                .filter(FREE_DOMAINS::contains)
+                .collect(Collectors.groupingBy(domain -> domain, Collectors.counting()));
+    }
 
     public static Integer getTotalPrice(List<Product> goods) {
         return goods.stream()

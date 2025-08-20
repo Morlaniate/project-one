@@ -2,11 +2,11 @@ package org.example.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import java.util.List;
 
-@AllArgsConstructor
 @Getter
-public final class User {
-
-    private long id;
+@AllArgsConstructor
+public class Film {
     private String name;
+    private List<String> genres;
 }
