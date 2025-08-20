@@ -5,12 +5,10 @@ import org.example.model.Person;
 import org.example.model.Product;
 import org.example.model.User;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.UnaryOperator;
 import java.util.stream.Collectors;
+import java.util.Comparator;
 
 public class App {
 
@@ -20,6 +18,15 @@ public class App {
             "hotmail.com",
             "yahoo.com"
     );
+
+    public static Integer getSecondBiggest(List<Integer> numbers) {
+        return numbers.stream()
+                .distinct()
+                .sorted(Comparator.reverseOrder())
+                .skip(1)
+                .findFirst()
+                .orElse(null);
+    }
 
     public static User findUserById(List<User> users, long id) {
 
