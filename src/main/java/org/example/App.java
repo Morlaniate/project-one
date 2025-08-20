@@ -1,7 +1,9 @@
 package org.example;
 
+import org.example.model.Film;
 import org.example.model.Person;
 import org.example.model.Product;
+import org.example.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,23 @@ public class App {
             "hotmail.com",
             "yahoo.com"
     );
+
+    public static User findUserById(List<User> users, long id) {
+
+        return users.stream()
+                .filter(u -> id == (u.getId()))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("User not found"));
+    }
+
+    public static Map<String, Long> getGenres(List<Film> films) {
+        return films.stream()
+                .flatMap(film -> film.getGenres().stream()
+                        .map(String::toLowerCase))
+                .collect(Collectors.groupingBy(
+                        genre -> genre,
+                        Collectors.counting()));
+    }
 
     public static Map<String, Long> getFreeDomainsCount(List<String> urls) {
         return urls.stream()
