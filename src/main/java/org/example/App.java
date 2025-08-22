@@ -5,8 +5,10 @@ import org.example.model.Person;
 import org.example.model.Product;
 import org.example.model.User;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.function.UnaryOperator;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.Comparator;
 
@@ -18,6 +20,13 @@ public class App {
             "hotmail.com",
             "yahoo.com"
     );
+
+    public static Map<Integer, Long> getMenCountByYear(List<Map<String,String>> users) {
+        return users.stream()
+                .filter(user -> "male".equals(user.get("gender")))
+                .map(user -> LocalDate.parse(user.get("birthday")).getYear())
+                .collect(Collectors.groupingBy(year -> year, Collectors.counting()));
+    }
 
     public static List<Integer> sameParityFilter(List<Integer> coll) {
         if (coll == null || coll.isEmpty()) {
