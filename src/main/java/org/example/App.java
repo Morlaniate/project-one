@@ -19,6 +19,19 @@ public class App {
             "yahoo.com"
     );
 
+    public static List<Integer> sameParityFilter(List<Integer> coll) {
+        if (coll == null || coll.isEmpty()) {
+            return List.of();
+        }
+
+        boolean firstParity = coll.getFirst() % 2 == 0;
+
+        return coll.stream()
+                .filter(num -> num % 2 == 0 == firstParity)
+                .toList();
+
+    }
+
     public static Integer getSecondBiggest(List<Integer> numbers) {
         return numbers.stream()
                 .distinct()
