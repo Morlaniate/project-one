@@ -21,7 +21,32 @@ public class App {
             "yahoo.com"
     );
 
-    public static Map<Integer, Long> getMenCountByYear(List<Map<String,String>> users) {
+    public static List<String> filterAnagram(String exampleWord, List<String> coll) {
+        if (coll == null || coll.isEmpty()) {
+            return List.of();
+        }
+
+        String sortedExampleWord = exampleWord
+                .toLowerCase()
+                .chars()
+                .mapToObj(c -> (char) c)
+                .sorted()
+                .map(String::valueOf)
+                .collect(Collectors.joining());
+
+        return coll.stream()
+                .filter(word -> {
+                    String sortedWord = word.chars()
+                            .mapToObj(c -> (char) c)
+                            .sorted()
+                            .map(String::valueOf)
+                            .collect(Collectors.joining());
+                    return sortedExampleWord.equals(sortedWord);
+                })
+                .toList();
+    }
+
+    public static Map<Integer, Long> getMenCountByYear(List<Map<String, String>> users) {
         return users.stream()
                 .filter(user -> "male".equals(user.get("gender")))
                 .map(user -> LocalDate.parse(user.get("birthday")).getYear())
